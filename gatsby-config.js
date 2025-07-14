@@ -6,7 +6,10 @@ module.exports = {
     author: `@vispaico`,
   },
   plugins: [
+    `gatsby-plugin-sass`, // Add this line
     `gatsby-plugin-image`,
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
