@@ -87,9 +87,6 @@
   }
 }
 /* Add this new rule at the top */
-.propertyContainer {
-  /* This class doesn't need styles, it's just a container */
-}
 
 .heroImage {
   height: 70vh;

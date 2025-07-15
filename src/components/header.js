@@ -3,39 +3,40 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'gatsby';
 import * as styles from './header.module.css';
 
-const Header = () => {
-  // State to track if the page has been scrolled
+// The Header now accepts the 'location' prop from the Layout
+const Header = ({ location }) => {
   const [isScrolled, setIsScrolled] = useState(false);
 
+  // This effect tracks the user's scroll position
   useEffect(() => {
-    // This function will run every time the user scrolls
     const handleScroll = () => {
-      // window.scrollY is the browser's native scroll position
       if (window.scrollY > 50) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
       }
     };
-
-    // Add the event listener when the component mounts
-    window.addEventListener('scroll', handleScroll);
-
-    // This is a cleanup function that removes the event listener when the component unmounts
-    // It's crucial for performance and preventing memory leaks.
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []); // The empty array ensures this effect only runs once on mount and cleanup on unmount
+  }, []);
+
+  // THE CORE LOGIC:
+  // 1. Check if we are on the homepage.
+  const isHomepage = location.pathname === '/';
+  // 2. The header should be solid if we have scrolled OR if we are NOT on the homepage.
+  const isSolid = isScrolled || !isHomepage;
 
   return (
-    // We add the 'scrolled' class based on our state
-    <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
+    // We apply the 'solid' class based on our new logic
+    <header className={`${styles.header} ${isSolid ? styles.solid : ''}`}>
       <div className={styles.headerContent}>
         <Link to="/" className={styles.logo}>
           AZURE
         </Link>
         <nav className={styles.nav}>
+          {/* We need to create these pages next */}
           <Link to="/properties">Properties</Link>
           <Link to="/about">About</Link>
           <Link to="/contact">Contact</Link>

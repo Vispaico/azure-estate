@@ -1,7 +1,7 @@
 /* src/components/header.module.css */
 
 .header {
-  position: fixed; /* Use fixed positioning for the transparent effect */
+  position: fixed; /* Fixed position allows it to float over the hero */
   top: 0;
   left: 0;
   width: 100%;
@@ -9,13 +9,13 @@
   padding: 2rem 0;
   transition: background-color 0.4s ease, padding 0.4s ease, color 0.4s ease;
   
-  /* Default state: transparent */
+  /* Default State (Homepage, top of page) */
   background-color: transparent;
   color: #ffffff;
 }
 
-/* State when the user has scrolled */
-.header.scrolled {
+/* The ONLY other state: when the .solid class is applied */
+.header.solid {
   background-color: #ffffff;
   color: #333333;
   padding: 1rem 0;
