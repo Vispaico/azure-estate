@@ -1,25 +1,26 @@
 // src/components/use-loco-scroll.js
 import { useEffect } from 'react';
-import LocomotiveScroll from 'locomotive-scroll';
-import 'locomotive-scroll/src/locomotive-scroll.scss';
+// Do NOT import the SCSS here. We will do it in gatsby-browser.js
 
 export default function useLocoScroll(start) {
   useEffect(() => {
     if (!start) return;
 
-    const scrollEl = document.querySelector('#main-container');
+    // We are dynamically importing LocomotiveScroll here to ensure it's only loaded on the client
+    import('locomotive-scroll').then((LocomotiveScroll) => {
+      const scrollEl = document.querySelector('#main-container');
+      
+      const locoScroll = new LocomotiveScroll.default({
+        el: scrollEl,
+        smooth: true,
+        multiplier: 1,
+        class: 'is-ready',
+      });
 
-    const locoScroll = new LocomotiveScroll({
-      el: scrollEl,
-      smooth: true,
-      multiplier: 1,
-      class: 'is-ready',
+      // Cleanup function to destroy the scroll instance
+      return () => {
+        if (locoScroll) locoScroll.destroy();
+      };
     });
-
-    return () => {
-      if (locoScroll) {
-        locoScroll.destroy();
-      }
-    };
   }, [start]);
 }
