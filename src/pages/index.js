@@ -1,14 +1,15 @@
 // src/pages/index.js
 import * as React from 'react';
 import Layout from '../components/layout.js';
+import Hero from '../components/hero.js';
 
 const IndexPage = () => {
   return (
     <Layout>
-      {/* Add some tall content to make the page scrollable */}
-      <div style={{ height: '200vh', background: '#f0f0f0', padding: '5rem' }}>
-        <h1>Azure Estates</h1>
-        <p>Scroll down to feel the effect.</p>
+      <Hero />
+      {/* We can add other sections below the hero later */}
+      <div style={{ height: '100vh', background: '#f0f0f0' }}>
+        {/* Placeholder for next section */}
       </div>
     </Layout>
   );
