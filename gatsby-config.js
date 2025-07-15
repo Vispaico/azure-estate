@@ -1,12 +1,21 @@
-// In gatsby-config.js
+// gatsby-config.js
 
-  // ... inside module.exports = { ... }
+const path = require('path'); // Import Node.js's path module
+
+module.exports = {
+  siteMetadata: {
+    title: `Azure Estates`,
+    description: `A showcase of luxury properties and high-end real estate.`,
+    author: `@azure-estates`,
+  },
   plugins: [
     {
       resolve: `gatsby-plugin-sass`,
       options: {
-        // Tell Sass to look in the node_modules folder
-        includePaths: ["node_modules"],
+        // This is a more explicit and robust configuration
+        sassOptions: {
+          includePaths: [path.resolve(__dirname, 'node_modules')],
+        }
       },
     },
     `gatsby-plugin-image`,
@@ -19,4 +28,5 @@
         path: `${__dirname}/src/images`,
       },
     },
-  ]
+  ],
+};
