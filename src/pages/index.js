@@ -7,7 +7,7 @@ const IndexPage = () => {
   return (
     <Layout>
       <Hero />
-      {/* We can add other sections below the hero later */}
+      {/* We can add other sections below the hero section later */}
       <div style={{ height: '100vh', background: '#f0f0f0' }}>
         {/* Placeholder for next section */}
       </div>
