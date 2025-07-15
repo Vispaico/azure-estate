@@ -4,9 +4,9 @@ import Layout from '../components/layout.js';
 import Hero from '../components/hero.js';
 import FeaturedProperties from '../components/featured-properties.js';
 
-const IndexPage = () => {
+const IndexPage = (props) => { // Accept props here
   return (
-    <Layout>
+    <Layout {...props}> {/* Pass all page props down to Layout */}
       <Hero />
       <FeaturedProperties />
     </Layout>

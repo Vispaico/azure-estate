@@ -1,20 +1,23 @@
 /* src/components/header.module.css */
 
 .header {
-  position: fixed;
+  position: fixed; /* Use fixed positioning for the transparent effect */
   top: 0;
   left: 0;
   width: 100%;
   z-index: 100;
   padding: 2rem 0;
   transition: background-color 0.4s ease, padding 0.4s ease, color 0.4s ease;
-  color: #ffffff; /* Default text color is white for transparent header */
+  
+  /* Default state: transparent */
+  background-color: transparent;
+  color: #ffffff;
 }
 
 /* State when the user has scrolled */
 .header.scrolled {
   background-color: #ffffff;
-  color: #333333; /* Text color changes to dark */
+  color: #333333;
   padding: 1rem 0;
   box-shadow: 0 2px 20px rgba(0,0,0,0.1);
 }
@@ -28,14 +31,10 @@
   align-items: center;
 }
 
-/* --- THIS IS THE KEY FIX --- */
-/* A general rule for ALL links within the header */
 .header a, .header a:visited {
-  color: inherit; /* This makes the link take on the parent's color (white or dark) */
+  color: inherit;
   text-decoration: none;
-  transition: color 0.3s ease;
 }
-/* -------------------------- */
 
 .logo {
   font-family: 'Times New Roman', Times, serif;

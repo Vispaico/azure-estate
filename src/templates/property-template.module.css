@@ -7,8 +7,8 @@
   display: flex;
   flex-direction: column;
   max-width: 1200px;
-  margin: -5rem auto 0 auto; /* Pull content up over the bottom of the image */
-  padding: 0 2rem 5rem 2rem;
+  margin: -5rem auto 0 auto;
+  padding: 0 2rem 10rem 2rem; /* Increased bottom padding for more breathing room */
   position: relative;
   z-index: 10;
 }
@@ -82,7 +82,16 @@
   }
   .sidebar {
     padding: 0 0 0 3rem;
-    position: sticky; /* Make the sidebar sticky on desktop */
-    top: 5rem;
+    position: sticky; /* ADD THIS BACK */
+    top: 6rem; /* Adjust top position to account for sticky header */
   }
 }
+/* Add this new rule at the top */
+.propertyContainer {
+  /* This class doesn't need styles, it's just a container */
+}
+
+.heroImage {
+  height: 70vh;
+}
+/* ... rest of the file is the same ... */

@@ -2,18 +2,18 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
-import Layout from '../components/layout.js';
+import Layout from '../components/layout.js'; // Add Layout import back
 import * as styles from './property-template.module.css';
 
-const PropertyTemplate = ({ data }) => {
+const PropertyTemplate = ({ data, ...props }) => { // Accept data and other props
   const property = data.markdownRemark;
   const image = getImage(property.frontmatter.featured_image);
 
   return (
-    <Layout>
+    <Layout {...props}> {/* Pass all page props down to Layout */}
       <div className={styles.propertyContainer}>
         <GatsbyImage image={image} alt={property.frontmatter.title} className={styles.heroImage} />
-        <div className={styles.contentWrapper}>
+        <div className={styles.contentWrapper} id="property-content">
           <div className={styles.mainContent}>
             <h1>{property.frontmatter.title}</h1>
             <p className={styles.location}>{property.frontmatter.location}</p>
@@ -41,13 +41,7 @@ export const query = graphql`
     markdownRemark(frontmatter: { slug: { eq: $slug } }) {
       html
       frontmatter {
-        title
-        price
-        location
-        beds
-        baths
-        sqft
-        slug
+        title, price, location, beds, baths, sqft, slug
         featured_image {
           childImageSharp {
             gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
