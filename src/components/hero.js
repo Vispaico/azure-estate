@@ -1,7 +1,7 @@
 // src/components/hero.js
 import React from 'react';
 import * as styles from './hero.module.css';
-import heroVideo from '../videos/hero-video.mp4';
+import heroVideo from '../videos/hero-video1.mp4';
 
 const Hero = () => {
   return (
