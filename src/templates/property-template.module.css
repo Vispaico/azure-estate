@@ -1,0 +1,88 @@
+/* src/templates/property-template.module.css */
+.heroImage {
+  height: 70vh;
+}
+
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  margin: -5rem auto 0 auto; /* Pull content up over the bottom of the image */
+  padding: 0 2rem 5rem 2rem;
+  position: relative;
+  z-index: 10;
+}
+
+.mainContent {
+  flex: 2;
+  background: #fff;
+  padding: 3rem;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+  border-radius: 8px;
+}
+
+.mainContent h1 {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.location {
+  color: #888;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.description {
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+.sidebar {
+  flex: 1;
+  padding: 2rem 0 0 0;
+}
+
+.statsCard {
+  background: #f7f7f7;
+  padding: 2rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.statsCard h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+
+.inquireButton {
+  width: 100%;
+  padding: 1rem;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+/* Responsive adjustments */
+@media(min-width: 769px) {
+  .contentWrapper {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .sidebar {
+    padding: 0 0 0 3rem;
+    position: sticky; /* Make the sidebar sticky on desktop */
+    top: 5rem;
+  }
+}
