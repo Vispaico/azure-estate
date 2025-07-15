@@ -1,6 +1,5 @@
 // gatsby-config.js
-
-const path = require('path'); // Import Node.js's path module
+const path = require('path');
 
 module.exports = {
   siteMetadata: {
@@ -12,20 +11,27 @@ module.exports = {
     {
       resolve: `gatsby-plugin-sass`,
       options: {
-        // This is a more explicit and robust configuration
         sassOptions: {
           includePaths: [path.resolve(__dirname, 'node_modules')],
-        }
+        },
       },
     },
     `gatsby-plugin-image`,
-    `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
+    `gatsby-transformer-remark`, // Ensures the Markdown transformer is loaded
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
         path: `${__dirname}/src/images`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `properties`, // This sources our .md files
+        path: `${__dirname}/src/properties`,
       },
     },
   ],
