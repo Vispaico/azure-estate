@@ -1,6 +1,6 @@
 /* src/components/featured-properties.module.css */
 .featuredSection {
-  padding: 8rem 0;
+  padding: 8rem 2rem;
   background-color: #f7f7f7;
 }
 
@@ -12,66 +12,53 @@
   font-weight: 300;
 }
 
-.scrollContainer {
-  display: flex;
-  overflow-x: auto;
-  padding: 0 5vw 2rem 5vw;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
-
-.scrollContainer::-webkit-scrollbar {
-  display: none;
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .propertyCard {
-  flex: 0 0 350px;
-  margin-right: 2rem;
   background-color: #ffffff;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   border-radius: 8px;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* --- THIS IS THE FIX --- */
-/* It targets the link inside the card */
-.propertyCard a {
   text-decoration: none;
   color: inherit;
-  display: block; /* Ensures the link fills the entire card area */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-/* -------------------- */
-
 
 .propertyCard:hover {
   transform: translateY(-10px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-.propertyCard:last-child {
-  margin-right: 0;
-}
-
-.propertyImage {
-  height: 250px;
-}
-
 .cardContent {
   padding: 1.5rem;
 }
 
-.cardContent h3 {
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
+.cardContent h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+.cardContent p { color: #888; margin-bottom: 1rem; }
+.cardContent span { font-size: 1.2rem; font-weight: bold; }
+
+.viewAllContainer {
+  text-align: center;
+  margin-top: 4rem;
 }
 
-.cardContent p {
-  color: #888;
-  margin-bottom: 1rem;
+.viewAllButton {
+  display: inline-block;
+  padding: 1rem 3rem;
+  background-color: #333;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
 }
 
-.cardContent span {
-  font-size: 1.2rem;
-  font-weight: bold;
+.viewAllButton:hover {
+  background-color: #555;
 }
