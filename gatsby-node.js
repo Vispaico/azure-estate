@@ -7,11 +7,9 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const result = await graphql(`
     query {
-      allMarkdownRemark {
+      allContentfulProperty {
         nodes {
-          frontmatter {
-            slug
-          }
+          slug
         }
       }
     }
@@ -21,13 +19,12 @@ exports.createPages = async ({ graphql, actions }) => {
     throw result.errors;
   }
 
-  result.data.allMarkdownRemark.nodes.forEach((node) => {
+  result.data.allContentfulProperty.nodes.forEach((node) => {
     createPage({
-      path: node.frontmatter.slug,
+      path: `/properties/${node.slug}`, // Create pages at /properties/your-slug
       component: propertyTemplate,
       context: {
-        // This 'slug' is passed as a variable to the page query in the template
-        slug: node.frontmatter.slug,
+        slug: node.slug,
       },
     });
   });

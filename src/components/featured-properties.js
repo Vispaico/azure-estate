@@ -6,18 +6,25 @@ import * as styles from './featured-properties.module.css';
 
 const FeaturedProperties = () => {
   const data = useStaticQuery(graphql`
-    query HomepageFeaturedQuery {
-      allMarkdownRemark(limit: 3, sort: { frontmatter: { price: DESC }}) {
+    query HomepageContentfulFeaturedQuery {
+      allContentfulProperty(
+        limit: 3
+        sort: { price: DESC }
+        # The problematic filter line has been removed.
+      ) {
         nodes {
-          frontmatter {
-            title, location, price, slug
-            featured_image {
-              childImageSharp {
-                gatsbyImageData(width: 600, placeholder: BLURRED, layout: CONSTRAINED)
-              }
-            }
-          }
           id
+          title
+          location
+          price
+          slug
+          featuredImage {
+            gatsbyImageData(
+              width: 600
+              placeholder: BLURRED
+              layout: CONSTRAINED
+            )
+          }
         }
       }
     }
@@ -27,15 +34,15 @@ const FeaturedProperties = () => {
     <section className={styles.featuredSection} data-scroll-section>
       <h2 className={styles.heading}>Featured Properties</h2>
       <div className={styles.gridContainer}>
-        {data.allMarkdownRemark.nodes.map((property) => {
-          const image = getImage(property.frontmatter.featured_image);
+        {data.allContentfulProperty.nodes.map((property) => {
+          const image = getImage(property.featuredImage);
           return (
-            <Link to={property.frontmatter.slug} key={property.id} className={styles.propertyCard}>
-              <GatsbyImage image={image} alt={property.frontmatter.title} />
+            <Link to={`/properties/${property.slug}`} key={property.id} className={styles.propertyCard}>
+              <GatsbyImage image={image} alt={property.title} />
               <div className={styles.cardContent}>
-                <h3>{property.frontmatter.title}</h3>
-                <p>{property.frontmatter.location}</p>
-                <span>{property.frontmatter.price}</span>
+                <h3>{property.title}</h3>
+                <p>{property.location}</p>
+                <span>{property.price}</span>
               </div>
             </Link>
           );

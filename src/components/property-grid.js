@@ -6,27 +6,23 @@ import * as styles from './property-grid.module.css';
 
 const PropertyGrid = () => {
   const data = useStaticQuery(graphql`
-    query AllPropertiesQuery {
-      allMarkdownRemark(sort: { frontmatter: { price: DESC }}) { # Sort by price
+    query AllContentfulPropertiesQuery {
+      allContentfulProperty(sort: { price: DESC }) {
         nodes {
-          frontmatter {
-            title
-            location
-            price
-            slug
-            featured_image {
-              childImageSharp {
-                gatsbyImageData(
-                  width: 600
-                  placeholder: BLURRED
-                  layout: CONSTRAINED
-                  transformOptions: {fit: COVER, cropFocus: CENTER}
-                  aspectRatio: 1.25 
-                )
-              }
-            }
-          }
           id
+          title
+          location
+          price
+          slug
+          featuredImage {
+            gatsbyImageData(
+              width: 600
+              placeholder: BLURRED
+              layout: CONSTRAINED
+              # The invalid 'transformOptions' line has been removed.
+              aspectRatio: 1.25
+            )
+          }
         }
       }
     }
@@ -34,15 +30,15 @@ const PropertyGrid = () => {
 
   return (
     <div className={styles.gridContainer}>
-      {data.allMarkdownRemark.nodes.map((property) => {
-        const image = getImage(property.frontmatter.featured_image);
+      {data.allContentfulProperty.nodes.map((property) => {
+        const image = getImage(property.featuredImage);
         return (
-          <Link to={property.frontmatter.slug} key={property.id} className={styles.propertyCard}>
-            <GatsbyImage image={image} alt={property.frontmatter.title} className={styles.propertyImage} />
+          <Link to={`/properties/${property.slug}`} key={property.id} className={styles.propertyCard}>
+            <GatsbyImage image={image} alt={property.title} className={styles.propertyImage} />
             <div className={styles.cardContent}>
-              <h3>{property.frontmatter.title}</h3>
-              <p>{property.frontmatter.location}</p>
-              <span>{property.frontmatter.price}</span>
+              <h3>{property.title}</h3>
+              <p>{property.location}</p>
+              <span>{property.price}</span>
             </div>
           </Link>
         );
