@@ -1,8 +1,13 @@
 // gatsby-config.js
 const path = require('path');
-require('dotenv').config({
-  path: `.env.${process.env.NODE_ENV}`,
-});
+const dotenv = require('dotenv');
+
+const envFile = `.env.${process.env.NODE_ENV || 'development'}`;
+const envResult = dotenv.config({ path: envFile });
+
+if (envResult.error) {
+  dotenv.config();
+}
 
 module.exports = {
   siteMetadata: {
@@ -42,6 +47,21 @@ module.exports = {
       options: {
         name: `properties`, // This sources our .md files
         path: `${__dirname}/src/properties`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `blog`,
+        path: `${__dirname}/src/content/blog`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `pages`,
+        path: `${__dirname}/`,
+        ignore: [`**/node_modules/**`, `**/.git/**`, `**/.cache/**`, `**/public/**`, `**/src/**`]
       },
     },
   ],

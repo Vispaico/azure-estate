@@ -38,6 +38,7 @@ const Header = ({ location }) => {
         <nav className={styles.nav}>
           {/* We need to create these pages next */}
           <Link to="/properties">Properties</Link>
+          <Link to="/blog">Blog</Link>
           <Link to="/about">About</Link>
           <Link to="/contact">Contact</Link>
         </nav>
